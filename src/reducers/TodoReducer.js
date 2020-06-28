@@ -1,26 +1,20 @@
+export const ADD_TODO = 'ADD_TODO';
+export const DELETE_TODO = 'DELETE_TODO';
 
-function TodoReducer(state = [], action){
+const initialState = {todos: []};
+
+
+function TodoReducer(state = initialState, action){
     switch (action.type){
-        case 'ADD TODO':
-            return [...state, action.payload]
-        case "DELETE TODO":
-            return state.filter(todo => (todo.description + todo.title ) !== action.payload)
+        case ADD_TODO:
+            return Object.assign({}, state, 
+                {todos: 
+                    [...state.todos, {...action.payload, id : state.todos.length + 1} ]});
+        case DELETE_TODO:
+            return Object.assign({}, state, {todos: state.todos.filter(todo => todo.id !== action.payload)});
         default:
-            return state
+            return state;
     }
 }
 
-export default TodoReducer
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default TodoReducer;
