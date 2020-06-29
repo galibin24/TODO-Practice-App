@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 import { DeleteTodo } from "./actions/DeleteTodo";
 import Todo from "./Todo";
 
@@ -15,16 +15,12 @@ function Todos() {
 
   return (
     <div>
-      {todos.map((todo) => {
-        return (
-          <Todo
-            
-            {...todo}
-            key={todo.id}
-            deleteTodo={onChange}
-          />
-        );
-      })}
+      <h2 className="TodoTitle">Todos</h2>
+      <div className="containerTodos">
+        {todos.map((todo) => (
+          <Todo {...todo} key={todo.id} deleteTodo={onChange} />
+        ))}
+      </div>
     </div>
   );
 }
